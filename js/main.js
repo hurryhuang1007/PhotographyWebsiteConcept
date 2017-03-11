@@ -8,8 +8,57 @@
  * Copyright 2015, Codrops
  * http://www.codrops.com
  */
-(function() {
+//(function() {
+	
+	//add img lazy loding		by hurryhuang1007 @GitHub
+	function setImg(index){
+		var aLi=document.getElementsByClassName('is-selected').item(0).getElementsByClassName('lazy-img');
+		var src=aLi.item(index).getAttribute('data-src');
+		var alt=aLi.item(index).getAttribute('data-alt');
+		var oImg=document.createElement('img');
+		oImg.src=src;
+		oImg.setAttribute("alt",alt);
+		if (aLi.item(index).children.length==0) {
+			aLi.item(index).appendChild(oImg);
+			aLi.item(index).setAttribute("style","height:auto;");
+		}
 
+		
+		// reset body height if stack is opened
+		if( classie.has(bodyEl, 'view-full') ) { // stack is opened
+			bodyEl.style.height = stacks[flkty.selectedIndex].offsetHeight + 'px';
+		}
+	}
+
+	//获得对象距离页面顶端的距离  
+	function getH(obj) {  
+		var h = 0;  
+		while (obj) {  
+			h += obj.offsetTop;  
+			obj = obj.offsetParent;  
+		}  
+		return h;  
+	}
+
+	window.onscroll = function () {
+		var aLi =document.getElementsByClassName('is-selected').item(0).getElementsByClassName('lazy-img');
+
+		for (var i = 0, l = aLi.length; i < l; i++) {
+			var oLi = aLi.item(i);
+			//检查oLi是否在可视区域
+			var t = document.documentElement.clientHeight + (document.documentElement.scrollTop || document.body.scrollTop);
+			var h = getH(oLi);
+			if (h < t) {
+				setTimeout("setImg(" + i + ")", 500);
+			}
+		}
+	}
+
+	window.onload=function(){
+		window.onscroll();
+	}
+
+	
 	var bodyEl = document.body,
 		docElem = window.document.documentElement,
 		support = { transitions: Modernizr.csstransitions },
@@ -195,5 +244,5 @@
 	}
 
 	init();
-
-})();
+	
+//})();
