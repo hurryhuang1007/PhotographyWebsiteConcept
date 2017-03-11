@@ -4,7 +4,8 @@ A photography-inspired website layout with an expanding stack slider and a backg
 
 [Article on Codrops](http://tympanus.net/codrops/?p=23446)
 
-[Demo](http://tympanus.net/Development/PhotographyWebsiteConcept/)
+[original Demo](http://tympanus.net/Development/PhotographyWebsiteConcept/)
+[My Demo](https://hurryhuang1007.github.io/PhotographyWebsiteConcept/)
 
 ## License
 
